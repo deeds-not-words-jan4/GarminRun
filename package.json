@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Garmin activity data viewer web application",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node server.local.js",
+    "dev": "nodemon server.local.js",
     "build": "echo 'No build step required'",
     "vercel-build": "echo 'No build step required'"
   },
