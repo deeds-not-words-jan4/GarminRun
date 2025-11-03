@@ -25,6 +25,7 @@ const loadMoreBtn = document.getElementById('load-more-btn');
 
 let currentStart = 0;
 const limit = 10;
+let tokens = null; // Store OAuth tokens
 
 // Check session status on load
 checkSession();
@@ -49,6 +50,8 @@ loginForm.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (data.success) {
+            tokens = data.tokens; // Store OAuth tokens
+            localStorage.setItem('garminTokens', JSON.stringify(tokens)); // Persist tokens
             showActivitiesSection();
             loadActivities();
         } else {
@@ -64,6 +67,8 @@ loginForm.addEventListener('submit', async (e) => {
 logoutBtn.addEventListener('click', async () => {
     try {
         await fetch('/api/logout', { method: 'POST' });
+        tokens = null; // Clear tokens
+        localStorage.removeItem('garminTokens'); // Remove from storage
         showLoginSection();
         currentStart = 0;
         activitiesList.innerHTML = '';
@@ -87,20 +92,25 @@ loadMoreBtn.addEventListener('click', () => {
 
 // Check session
 async function checkSession() {
-    try {
-        const response = await fetch('/api/status');
-        const data = await response.json();
-
-        if (data.loggedIn) {
-            showActivitiesSection();
-            loadActivities();
-        } else {
-            showLoginSection();
+    // Check if we have stored tokens in localStorage
+    const storedTokens = localStorage.getItem('garminTokens');
+    if (storedTokens) {
+        try {
+            tokens = JSON.parse(storedTokens);
+            // Verify the tokens are still valid by trying to load activities
+            const response = await fetch(`/api/activities?start=0&limit=1&tokens=${encodeURIComponent(JSON.stringify(tokens))}`);
+            const data = await response.json();
+            if (data.success) {
+                showActivitiesSection();
+                loadActivities();
+                return;
+            }
+        } catch (error) {
+            console.error('Session validation error:', error);
         }
-    } catch (error) {
-        console.error('Session check error:', error);
-        showLoginSection();
     }
+    // If no valid session, show login
+    showLoginSection();
 }
 
 // Load activities
@@ -108,7 +118,7 @@ async function loadActivities(append = false) {
     loading.style.display = 'block';
 
     try {
-        const response = await fetch(`/api/activities?start=${currentStart}&limit=${limit}`);
+        const response = await fetch(`/api/activities?start=${currentStart}&limit=${limit}&tokens=${encodeURIComponent(JSON.stringify(tokens))}`);
         const data = await response.json();
 
         if (data.success) {

@@ -15,32 +15,26 @@ GarminのアクティビティデータをWebブラウザで表示するアプ�
 
 ## セットアップ
 
-### 1. 依存パッケージのインストール
+### ローカル開発
+
+#### 1. 依存パッケージのインストール
 
 ```bash
 npm install
 ```
 
-### 2. 環境変数の設定
+#### 2. 環境変数の設定（オプション）
 
-`.env.example`ファイルをコピーして`.env`ファイルを作成します：
-
-```bash
-cp .env.example .env
-```
-
-`.env`ファイルを編集して、必要な情報を入力してください（オプション）：
+`.env`ファイルを作成して、必要に応じて設定：
 
 ```
-GARMIN_EMAIL=your-email@example.com
-GARMIN_PASSWORD=your-password
 PORT=3000
 SESSION_SECRET=your-random-session-secret
 ```
 
 **注意**: アプリケーションのログインフォームから直接ログインすることもできます。
 
-### 3. アプリケーションの起動
+#### 3. アプリケーションの起動
 
 ```bash
 npm start
@@ -52,9 +46,33 @@ npm start
 npm run dev
 ```
 
-### 4. ブラウザでアクセス
+#### 4. ブラウザでアクセス
 
 ブラウザで `http://localhost:3000` を開きます。
+
+### Vercelへのデプロイ
+
+#### 1. Vercel CLIのインストール
+
+```bash
+npm install -g vercel
+```
+
+#### 2. デプロイ
+
+```bash
+vercel
+```
+
+初回デプロイ時は、プロジェクトの設定をインタラクティブに選択します。
+
+#### 3. プロダクション環境へのデプロイ
+
+```bash
+vercel --prod
+```
+
+**注意**: Vercelでは、各APIエンドポイントが個別のServerless Functionとしてデプロイされます。セッション管理はクライアント側のlocalStorageでOAuthトークンを保存します。
 
 ## 使い方
 
