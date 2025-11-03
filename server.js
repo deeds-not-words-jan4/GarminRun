@@ -91,6 +91,12 @@ app.get('/api/status', (req, res) => {
   res.json({ loggedIn: !!req.session.loggedIn });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;

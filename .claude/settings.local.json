@@ -8,7 +8,9 @@
       "Bash(gh:*)",
       "Bash(npm start)",
       "Bash(npx vercel:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
