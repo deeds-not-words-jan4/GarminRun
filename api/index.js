@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.static('public'));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'garmin-secret-key',
   resave: false,
