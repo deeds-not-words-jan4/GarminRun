@@ -41,18 +41,27 @@
                 <div id="login-error" class="error-message"></div>
             </div>
 
-            <!-- Activities Section -->
-            <div id="activities-section" style="display: none;">
-                <div class="controls">
-                    <button id="refresh-btn" class="btn btn-primary">更新</button>
-                    <button id="load-more-btn" class="btn btn-secondary">さらに読み込む</button>
+            <!-- Calendar Section -->
+            <div id="calendar-section" style="display: none;">
+                <div class="calendar-header">
+                    <button id="prev-month-btn" class="btn btn-icon">◀</button>
+                    <h2 id="calendar-month-year"></h2>
+                    <button id="next-month-btn" class="btn btn-icon">▶</button>
                 </div>
 
                 <div id="loading" class="loading" style="display: none;">
                     読み込み中...
                 </div>
 
-                <div id="activities-list"></div>
+                <div id="calendar-grid"></div>
+            </div>
+
+            <!-- Activity Detail Modal -->
+            <div id="activity-detail-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <div id="activity-detail"></div>
+                </div>
             </div>
         </main>
     </div>
