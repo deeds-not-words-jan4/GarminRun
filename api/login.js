@@ -43,9 +43,10 @@ module.exports = async (req, res) => {
     // The client will need to send this back with subsequent requests
     console.log('Exporting tokens...');
     const tokens = garminClient.exportToken();
+    console.log('Tokens structure:', JSON.stringify(tokens, null, 2));
     console.log('Tokens exported, sending response');
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Successfully logged in to Garmin Connect',
       tokens: tokens
     });

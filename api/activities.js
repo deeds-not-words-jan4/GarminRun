@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     console.log('GarminConnect client created');
 
     console.log('Loading tokens...');
-    await garminClient.restoreOrLogin(tokens.oauth1, tokens.oauth2);
+    garminClient.loadToken(tokens.oauth1, tokens.oauth2);
     console.log('Tokens loaded successfully');
 
     const limit = parseInt(req.query.limit) || 10;
