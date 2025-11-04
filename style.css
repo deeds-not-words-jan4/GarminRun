@@ -467,7 +467,7 @@ header h1 {
 
 .calendar-day {
     aspect-ratio: 1;
-    padding: 10px;
+    padding: 8px;
     border-radius: 15px;
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -475,9 +475,10 @@ header h1 {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     position: relative;
+    min-height: 80px;
 }
 
 .calendar-day:hover {
@@ -499,16 +500,19 @@ header h1 {
 }
 
 .calendar-day-number {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #333;
-    margin-bottom: 5px;
+    align-self: flex-start;
 }
 
 .calendar-day-distance {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: #0ABAB5;
+    align-self: center;
+    margin: auto 0;
+    text-align: center;
 }
 
 .calendar-day.has-activity .calendar-day-distance {
@@ -577,6 +581,11 @@ header h1 {
 
 /* Responsive Calendar */
 @media (max-width: 768px) {
+    .calendar-header {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
     .calendar-header h2 {
         font-size: 18px;
     }
@@ -588,29 +597,85 @@ header h1 {
     }
 
     #calendar-grid {
-        gap: 5px;
+        gap: 4px;
     }
 
     .calendar-day-header {
-        padding: 10px 5px;
-        font-size: 12px;
+        padding: 8px 3px;
+        font-size: 11px;
     }
 
     .calendar-day {
         padding: 5px;
+        min-height: 60px;
+        border-radius: 10px;
     }
 
     .calendar-day-number {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .calendar-day-distance {
-        font-size: 11px;
+        font-size: 12px;
+        font-weight: 600;
     }
 
     .modal-content {
         margin: 10% auto;
         padding: 20px;
         max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-header {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .calendar-header h2 {
+        font-size: 16px;
+    }
+
+    .btn-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    #calendar-grid {
+        gap: 3px;
+    }
+
+    .calendar-day-header {
+        padding: 6px 2px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+
+    .calendar-day {
+        padding: 4px;
+        min-height: 50px;
+        border-radius: 8px;
+    }
+
+    .calendar-day-number {
+        font-size: 11px;
+    }
+
+    .calendar-day-distance {
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .modal-content {
+        margin: 5% auto;
+        padding: 15px;
+        max-width: 95%;
+        border-radius: 15px;
+    }
+
+    .modal-close {
+        font-size: 28px;
     }
 }
