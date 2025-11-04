@@ -496,7 +496,15 @@ header h1 {
 }
 
 .calendar-day.has-activity {
-    background: linear-gradient(135deg, rgba(10, 186, 181, 0.1), rgba(72, 209, 204, 0.1));
+    background: linear-gradient(135deg, #0ABAB5, #48D1CC);
+}
+
+.calendar-day.has-activity .calendar-day-number {
+    color: white;
+}
+
+.calendar-day.has-activity .calendar-day-distance {
+    color: white;
 }
 
 .calendar-day-number {
