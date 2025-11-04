@@ -17,8 +17,6 @@ const calendarSection = document.getElementById('calendar-section');
 const loginForm = document.getElementById('login-form');
 const loginError = document.getElementById('login-error');
 const loading = document.getElementById('loading');
-const userInfo = document.getElementById('user-info');
-const logoutBtn = document.getElementById('logout-btn');
 const calendarGrid = document.getElementById('calendar-grid');
 const calendarMonthYear = document.getElementById('calendar-month-year');
 const prevMonthBtn = document.getElementById('prev-month-btn');
@@ -64,19 +62,6 @@ loginForm.addEventListener('submit', async (e) => {
     } catch (error) {
         loginError.textContent = 'ログインエラーが発生しました';
         console.error('Login error:', error);
-    }
-});
-
-// Logout
-logoutBtn.addEventListener('click', async () => {
-    try {
-        await fetch('/api/logout', { method: 'POST' });
-        tokens = null; // Clear tokens
-        localStorage.removeItem('garminTokens'); // Remove from storage
-        allActivities = [];
-        showLoginSection();
-    } catch (error) {
-        console.error('Logout error:', error);
     }
 });
 
@@ -395,12 +380,10 @@ function calculateEffortLevel(activity) {
 function showLoginSection() {
     loginSection.style.display = 'block';
     calendarSection.style.display = 'none';
-    userInfo.style.display = 'none';
 }
 
 // Show calendar section
 function showCalendarSection() {
     loginSection.style.display = 'none';
     calendarSection.style.display = 'block';
-    userInfo.style.display = 'block';
 }

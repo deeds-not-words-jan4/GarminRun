@@ -466,7 +466,7 @@ header h1 {
 }
 
 .calendar-day {
-    aspect-ratio: 1;
+    aspect-ratio: 0.85;
     padding: 8px;
     border-radius: 15px;
     background: white;
@@ -478,7 +478,7 @@ header h1 {
     justify-content: space-between;
     align-items: stretch;
     position: relative;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .calendar-day:hover {
@@ -515,7 +515,7 @@ header h1 {
 }
 
 .calendar-day-distance {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #0ABAB5;
     align-self: center;
@@ -615,8 +615,9 @@ header h1 {
 
     .calendar-day {
         padding: 5px;
-        min-height: 60px;
+        min-height: 80px;
         border-radius: 10px;
+        aspect-ratio: 0.8;
     }
 
     .calendar-day-number {
@@ -624,8 +625,8 @@ header h1 {
     }
 
     .calendar-day-distance {
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 700;
     }
 
     .modal-content {
@@ -663,8 +664,9 @@ header h1 {
 
     .calendar-day {
         padding: 4px;
-        min-height: 50px;
+        min-height: 70px;
         border-radius: 8px;
+        aspect-ratio: 0.75;
     }
 
     .calendar-day-number {
@@ -672,8 +674,8 @@ header h1 {
     }
 
     .calendar-day-distance {
-        font-size: 10px;
-        font-weight: 600;
+        font-size: 12px;
+        font-weight: 700;
     }
 
     .modal-content {
