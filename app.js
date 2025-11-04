@@ -237,16 +237,16 @@ function createCalendarDay(day, year, month, isOtherMonth, activitiesByDate) {
 
 // Get activity icon based on type
 function getActivityIcon(typeKey) {
-    if (!typeKey) return '🏃';
+    if (!typeKey) return '🐇';
 
     const type = typeKey.toLowerCase();
-    if (type.includes('running') || type.includes('run')) return '🏃';
-    if (type.includes('walking') || type.includes('walk')) return '🚶';
+    if (type.includes('running') || type.includes('run')) return '🐇';
+    if (type.includes('walking') || type.includes('walk')) return '🐢';
     if (type.includes('cycling') || type.includes('bike')) return '🚴';
     if (type.includes('swimming') || type.includes('swim')) return '🏊';
     if (type.includes('hiking')) return '🥾';
 
-    return '🏃'; // Default
+    return '🐇'; // Default
 }
 
 // Show activity detail in modal
