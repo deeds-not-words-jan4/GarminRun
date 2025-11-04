@@ -1,4 +1,4 @@
-const CACHE_NAME = 'garmin-viewer-v2';
+const CACHE_NAME = 'garmin-viewer-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -23,13 +23,19 @@ self.addEventListener('install', (event) => {
 
 // Fetch resources - Network First strategy
 self.addEventListener('fetch', (event) => {
+  // Skip caching for API requests and non-GET requests
+  if (event.request.url.includes('/api/') || event.request.method !== 'GET') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
         // Clone the response
         const responseClone = response.clone();
 
-        // Update cache with new response
+        // Update cache with new response (only for GET requests of static files)
         caches.open(CACHE_NAME)
           .then((cache) => {
             cache.put(event.request, responseClone);

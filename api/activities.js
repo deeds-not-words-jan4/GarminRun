@@ -14,24 +14,34 @@ module.exports = async (req, res) => {
   }
 
   try {
+    console.log('=== Activities API called ===');
     const tokens = JSON.parse(req.query.tokens || '{}');
+    console.log('Tokens parsed:', { hasOauth1: !!tokens.oauth1, hasOauth2: !!tokens.oauth2 });
 
     if (!tokens.oauth1 || !tokens.oauth2) {
+      console.log('Missing tokens');
       return res.status(401).json({ error: 'Tokens required' });
     }
 
     const garminClient = new GarminConnect();
-    garminClient.loadToken(tokens.oauth1, tokens.oauth2);
+    console.log('GarminConnect client created');
+
+    console.log('Loading tokens...');
+    await garminClient.restoreOrLogin(tokens.oauth1, tokens.oauth2);
+    console.log('Tokens loaded successfully');
 
     const limit = parseInt(req.query.limit) || 10;
     const start = parseInt(req.query.start) || 0;
+    console.log('Fetching activities:', { start, limit });
 
     const activities = await garminClient.getActivities(start, limit);
+    console.log('Activities fetched:', activities.length);
 
     res.json({ success: true, activities });
   } catch (error) {
     console.error('Error fetching activities:', error);
-    res.status(500).json({ error: 'Failed to fetch activities' });
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ error: 'Failed to fetch activities', details: error.message });
   }
 };
 
