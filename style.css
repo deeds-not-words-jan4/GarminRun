@@ -418,7 +418,7 @@ header h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 25px 20px;
     background: linear-gradient(135deg, #0ABAB5, #48D1CC);
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(10, 186, 181, 0.3);
@@ -543,6 +543,9 @@ header h1 {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     animation: fadeIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes fadeIn {
@@ -552,10 +555,13 @@ header h1 {
 
 .modal-content {
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    margin: 5% auto;
+    margin: 0;
     padding: 30px;
     border-radius: 20px;
     max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: slideDown 0.3s ease;
@@ -590,7 +596,7 @@ header h1 {
 /* Responsive Calendar */
 @media (max-width: 768px) {
     .calendar-header {
-        padding: 15px;
+        padding: 20px 15px;
         margin-bottom: 20px;
     }
 
@@ -630,15 +636,16 @@ header h1 {
     }
 
     .modal-content {
-        margin: 10% auto;
+        margin: 0;
         padding: 20px;
+        width: 85%;
         max-width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     .calendar-header {
-        padding: 12px;
+        padding: 18px 12px;
         margin-bottom: 15px;
     }
 
@@ -679,8 +686,9 @@ header h1 {
     }
 
     .modal-content {
-        margin: 5% auto;
+        margin: 0;
         padding: 15px;
+        width: 90%;
         max-width: 95%;
         border-radius: 15px;
     }
